@@ -30,7 +30,7 @@ require('./sourcemap-register.js');/******/ (() => { // webpackBootstrap
   * @returns Multiplication of both arguments.
   */
  const multiply = (x, y) => x * y;
- 
+
  module.exports = {
    add,
    subtract,
@@ -1735,9 +1735,8 @@ async function run() {
     const end = new Date();
     core.debug('Ending at : ' + end.toTimeString());
 
-    core.warning('It take : ' + (end - start));
+    core.warning('Delta between startTime & endTime : ' + (end - start) );
  
-
     core.setOutput('addition', addResult);
     core.setOutput('subtract', subtractResult);
     core.setOutput('multiplication', multiplyResult);
