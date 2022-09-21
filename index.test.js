@@ -4,9 +4,9 @@ const process = require('process');
 const cp = require('child_process');
 const path = require('path');
 
-test('throws invalid number', async () => {
-  await expect(wait('foo')).rejects.toThrow('milliseconds not a number');
-});
+// test('throws invalid number', async () => {
+//   await expect(wait('foo')).rejects.toThrow('milliseconds not a number');
+// });
 // // shows how the runner will run a javascript action with env / stdout protocol
 // test('test runs', () => {
 //   process.env['INPUT_MILLISECONDS'] = 100;
