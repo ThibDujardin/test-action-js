@@ -11,7 +11,7 @@ require('./sourcemap-register.js');/******/ (() => { // webpackBootstrap
  * @param {number} y second number.
  * @returns Addition of both arguments.
  */
- const add = (x, y) => x + y;
+ const add = (x, y) => parseInt(x, 10) + parseInt(y, 10) ;
 
  /**
   * Simple subtraction.
