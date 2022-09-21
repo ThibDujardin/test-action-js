@@ -1,17 +1,17 @@
 name: 'Wait'
 description: 'Wait a designated number of milliseconds'
 inputs:
-  input-1:
+  input1:
     description: 'value that will be use to do math'
     required: true
-  input-2:
+  input2:
     description: 'value that will be use to do math'
     required: true
 
 outputs:
   addition:  
     description: 'The current addition result'
-  subtract:
+  subtraction:
     description: 'The current subtraction result'
   multiplication:
     description: 'The current multiplication result'

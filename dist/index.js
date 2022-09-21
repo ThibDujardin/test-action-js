@@ -1,6 +1,45 @@
 require('./sourcemap-register.js');/******/ (() => { // webpackBootstrap
 /******/ 	var __webpack_modules__ = ({
 
+/***/ 582:
+/***/ ((module) => {
+
+
+
+function runner(core, add, subtract, multiply){
+    try {
+        const input1 = core.getInput('input1');
+        const input2 = core.getInput('input2');
+        const start = new Date();
+        core.debug('Starting at : ' + start.toTimeString());
+    
+        core.info(`Performin addition of : ${input1} & ${input2} ...`);
+        const addResult = add(input1,input2)
+    
+        core.info(`Performin subtraction of : ${input1} & ${input2} ...`);
+        const subtractResult = subtract(input1,input2)
+    
+        core.info(`Performin multiplication of : ${input1} & ${input2} ...`);
+        const multiplyResult = multiply(input1,input2)
+        const end = new Date();
+        core.debug('Ending at : ' + end.toTimeString());
+    
+        core.warning('Delta between startTime & endTime : ' + (end - start) );
+     
+        core.setOutput('addition', addResult);
+        core.setOutput('subtraction', subtractResult);
+        core.setOutput('multiplication', multiplyResult);
+      } catch (error) {
+        core.setFailed(error.message);
+      }
+}
+
+module.exports = {
+    runner
+  };
+
+/***/ }),
+
 /***/ 80:
 /***/ ((module) => {
 
@@ -1714,35 +1753,12 @@ module.exports = require("util");
 var __webpack_exports__ = {};
 // This entry need to be wrapped in an IIFE because it need to be isolated against other modules in the chunk.
 (() => {
+const { runner } = __nccwpck_require__(582);
 const core = __nccwpck_require__(186);
 const { add, subtract, multiply } = __nccwpck_require__(80);
  
 async function run() {
-  try {
-    const input1 = core.getInput('input-1');
-    const input2 = core.getInput('input-2');
-    const start = new Date();
-    core.debug('Starting at : ' + start.toTimeString());
-
-    core.info(`Performin addition of : ${input1} & ${input2} ...`);
-    const addResult = add(input1,input2)
-
-    core.info(`Performin subtraction of : ${input1} & ${input2} ...`);
-    const subtractResult = subtract(input1,input2)
-
-    core.info(`Performin multiplication of : ${input1} & ${input2} ...`);
-    const multiplyResult = multiply(input1,input2)
-    const end = new Date();
-    core.debug('Ending at : ' + end.toTimeString());
-
-    core.warning('Delta between startTime & endTime : ' + (end - start) );
- 
-    core.setOutput('addition', addResult);
-    core.setOutput('subtraction', subtractResult);
-    core.setOutput('multiplication', multiplyResult);
-  } catch (error) {
-    core.setFailed(error.message);
-  }
+  runner(core,add,subtract,multiply)
 }
 
 run();
