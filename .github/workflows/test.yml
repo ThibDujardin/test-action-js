@@ -29,3 +29,11 @@ jobs:
     - name: Validate // Test addition
       run: |
         [[ "${{ steps.test.outputs.addition }}" -eq 14 ]]
+
+    - name: Validate // Test Subtraction  
+      run: |
+        [[ "${{ steps.test.outputs.subtraction }}" -eq -4 ]]
+
+    - name: Validate // Test multiplication
+      run: |
+        [[ "${{ steps.test.outputs.multiplication }}" -eq 45 ]]
