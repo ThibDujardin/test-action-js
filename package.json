@@ -26,11 +26,11 @@
   "homepage": "https://github.com/actions/javascript-action#readme",
   "dependencies": {
     "@actions/core": "^1.2.5",
-    "jest": "^27.3.1"
+    "jest": "^29.0.3"
   },
   "devDependencies": {
     "@vercel/ncc": "^0.31.1",
     "eslint": "^8.0.0",
-    "jest": "^27.3.1"
+    "jest": "^29.0.3"
   }
 }
