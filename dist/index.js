@@ -1738,7 +1738,7 @@ async function run() {
     core.warning('Delta between startTime & endTime : ' + (end - start) );
  
     core.setOutput('addition', addResult);
-    core.setOutput('subtract', subtractResult);
+    core.setOutput('subtraction', subtractResult);
     core.setOutput('multiplication', multiplyResult);
   } catch (error) {
     core.setFailed(error.message);
