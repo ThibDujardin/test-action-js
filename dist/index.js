@@ -1555,19 +1555,26 @@ exports.debug = debug; // for test
 
 /***/ }),
 
-/***/ 258:
+/***/ 587:
 /***/ ((module) => {
 
-let wait = function (milliseconds) {
-  return new Promise((resolve) => {
-    if (typeof milliseconds !== 'number') {
-      throw new Error('milliseconds not a number');
-    }
-    setTimeout(() => resolve("done!"), milliseconds)
-  });
-};
+module.exports = eval("require")("./add");
 
-module.exports = wait;
+
+/***/ }),
+
+/***/ 880:
+/***/ ((module) => {
+
+module.exports = eval("require")("./multiply");
+
+
+/***/ }),
+
+/***/ 685:
+/***/ ((module) => {
+
+module.exports = eval("require")("./subtract");
 
 
 /***/ }),
@@ -1694,20 +1701,34 @@ var __webpack_exports__ = {};
 // This entry need to be wrapped in an IIFE because it need to be isolated against other modules in the chunk.
 (() => {
 const core = __nccwpck_require__(186);
-const wait = __nccwpck_require__(258);
-
-
-// most @actions toolkit packages have async methods
+const add = __nccwpck_require__(587)
+const subtract = __nccwpck_require__(685)
+const multiply = __nccwpck_require__(880)
+ 
 async function run() {
   try {
-    const ms = core.getInput('milliseconds');
-    core.info(`Waiting ${ms} milliseconds ...`);
+    const input1 = core.getInput('input-1');
+    const input2 = core.getInput('input-2');
+    const start = new Date();
+    core.debug('Starting at : ' + start.toTimeString());
 
-    core.debug((new Date()).toTimeString()); // debug is only output if you set the secret `ACTIONS_RUNNER_DEBUG` to true
-    await wait(parseInt(ms));
-    core.info((new Date()).toTimeString());
+    core.info(`Performin addition of : ${input1} & ${input2} ...`);
+    const addResult = add(input1,input2)
 
-    core.setOutput('time', new Date().toTimeString());
+    core.info(`Performin subtraction of : ${input1} & ${input2} ...`);
+    const subtractResult = subtract(input1,input2)
+
+    core.info(`Performin multiplication of : ${input1} & ${input2} ...`);
+    const multiplyResult = multiply(input1,input2)
+    const end = new Date();
+    core.debug('Ending at : ' + end.toTimeString());
+
+    core.warning('It take : ' + (end - start));
+ 
+
+    core.setOutput('addition', addResult);
+    core.setOutput('subtract', subtractResult);
+    core.setOutput('multiplication', multiplyResult);
   } catch (error) {
     core.setFailed(error.message);
   }
