@@ -21,5 +21,19 @@ jobs:
     steps:
     - uses: actions/checkout@v3
     - uses: ./
+      id : test
       with:
-        milliseconds: 1000
+        input1: 5
+        input2: 9
+
+    - name: Validate // Test addition
+      run: |
+        [[ "${{ steps.test.outputs.addition }}" -eq 14 ]]
+
+    - name: Validate // Test Subtraction  
+      run: |
+        [[ "${{ steps.test.outputs.subtraction }}" -eq -4 ]]
+
+    - name: Validate // Test multiplication
+      run: |
+        [[ "${{ steps.test.outputs.multiplication }}" -eq 45 ]]

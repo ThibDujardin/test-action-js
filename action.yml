@@ -1,13 +1,21 @@
 name: 'Wait'
 description: 'Wait a designated number of milliseconds'
 inputs:
-  milliseconds:  # id of input
-    description: 'number of milliseconds to wait'
+  input1:
+    description: 'value that will be use to do math'
     required: true
-    default: '1000'
+  input2:
+    description: 'value that will be use to do math'
+    required: true
+
 outputs:
-  time: # output will be available to future steps
-    description: 'The current time after waiting'
+  addition:  
+    description: 'The current addition result'
+  subtraction:
+    description: 'The current subtraction result'
+  multiplication:
+    description: 'The current multiplication result'
+
 runs:
   using: 'node16'
   main: 'dist/index.js'

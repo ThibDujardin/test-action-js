@@ -1,6 +1,83 @@
 require('./sourcemap-register.js');/******/ (() => { // webpackBootstrap
 /******/ 	var __webpack_modules__ = ({
 
+/***/ 582:
+/***/ ((module) => {
+
+
+
+function runner(core, add, subtract, multiply){
+    try {
+        const input1 = core.getInput('input1');
+        const input2 = core.getInput('input2');
+        const start = new Date();
+        core.debug('Starting at : ' + start.toTimeString());
+    
+        core.info(`Performin addition of : ${input1} & ${input2} ...`);
+        const addResult = add(input1,input2)
+    
+        core.info(`Performin subtraction of : ${input1} & ${input2} ...`);
+        const subtractResult = subtract(input1,input2)
+    
+        core.info(`Performin multiplication of : ${input1} & ${input2} ...`);
+        const multiplyResult = multiply(input1,input2)
+        const end = new Date();
+        core.debug('Ending at : ' + end.toTimeString());
+    
+        core.warning('Delta between startTime & endTime : ' + (end - start) );
+     
+        core.setOutput('addition', addResult);
+        core.setOutput('subtraction', subtractResult);
+        core.setOutput('multiplication', multiplyResult);
+      } catch (error) {
+        core.setFailed(error.message);
+      }
+}
+
+module.exports = {
+    runner
+  };
+
+/***/ }),
+
+/***/ 80:
+/***/ ((module) => {
+
+/**
+ * Simple addition.
+ *
+ * @param {number} x First number.
+ * @param {number} y second number.
+ * @returns Addition of both arguments.
+ */
+ const add = (x, y) => parseInt(x, 10) + parseInt(y, 10) ;
+
+ /**
+  * Simple subtraction.
+  *
+  * @param {number} x First number.
+  * @param {number} y second number.
+  * @returns Subtraction of second argument from the first.
+  */
+ const subtract = (x, y) => x - y;
+ 
+ /**
+  * Simple multiplication.
+  *
+  * @param {number} x First number.
+  * @param {number} y second number.
+  * @returns Multiplication of both arguments.
+  */
+ const multiply = (x, y) => x * y;
+
+ module.exports = {
+   add,
+   subtract,
+   multiply,
+ };
+
+/***/ }),
+
 /***/ 351:
 /***/ (function(__unused_webpack_module, exports, __nccwpck_require__) {
 
@@ -1555,23 +1632,6 @@ exports.debug = debug; // for test
 
 /***/ }),
 
-/***/ 258:
-/***/ ((module) => {
-
-let wait = function (milliseconds) {
-  return new Promise((resolve) => {
-    if (typeof milliseconds !== 'number') {
-      throw new Error('milliseconds not a number');
-    }
-    setTimeout(() => resolve("done!"), milliseconds)
-  });
-};
-
-module.exports = wait;
-
-
-/***/ }),
-
 /***/ 357:
 /***/ ((module) => {
 
@@ -1693,24 +1753,12 @@ module.exports = require("util");
 var __webpack_exports__ = {};
 // This entry need to be wrapped in an IIFE because it need to be isolated against other modules in the chunk.
 (() => {
+const { runner } = __nccwpck_require__(582);
 const core = __nccwpck_require__(186);
-const wait = __nccwpck_require__(258);
-
-
-// most @actions toolkit packages have async methods
+const { add, subtract, multiply } = __nccwpck_require__(80);
+ 
 async function run() {
-  try {
-    const ms = core.getInput('milliseconds');
-    core.info(`Waiting ${ms} milliseconds ...`);
-
-    core.debug((new Date()).toTimeString()); // debug is only output if you set the secret `ACTIONS_RUNNER_DEBUG` to true
-    await wait(parseInt(ms));
-    core.info((new Date()).toTimeString());
-
-    core.setOutput('time', new Date().toTimeString());
-  } catch (error) {
-    core.setFailed(error.message);
-  }
+  runner(core,add,subtract,multiply)
 }
 
 run();
