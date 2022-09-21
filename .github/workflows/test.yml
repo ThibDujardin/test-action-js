@@ -23,8 +23,8 @@ jobs:
     - uses: ./
       id : test
       with:
-        input-1: 5
-        input-2: 9
+        input1: 5
+        input2: 9
 
     - name: Validate // Test addition
       run: |
