@@ -1,6 +1,44 @@
 require('./sourcemap-register.js');/******/ (() => { // webpackBootstrap
 /******/ 	var __webpack_modules__ = ({
 
+/***/ 80:
+/***/ ((module) => {
+
+/**
+ * Simple addition.
+ *
+ * @param {number} x First number.
+ * @param {number} y second number.
+ * @returns Addition of both arguments.
+ */
+ const add = (x, y) => x + y;
+
+ /**
+  * Simple subtraction.
+  *
+  * @param {number} x First number.
+  * @param {number} y second number.
+  * @returns Subtraction of second argument from the first.
+  */
+ const subtract = (x, y) => x - y;
+ 
+ /**
+  * Simple multiplication.
+  *
+  * @param {number} x First number.
+  * @param {number} y second number.
+  * @returns Multiplication of both arguments.
+  */
+ const multiply = (x, y) => x * y;
+ 
+ module.exports = {
+   add,
+   subtract,
+   multiply,
+ };
+
+/***/ }),
+
 /***/ 351:
 /***/ (function(__unused_webpack_module, exports, __nccwpck_require__) {
 
@@ -1555,30 +1593,6 @@ exports.debug = debug; // for test
 
 /***/ }),
 
-/***/ 587:
-/***/ ((module) => {
-
-module.exports = eval("require")("./add");
-
-
-/***/ }),
-
-/***/ 880:
-/***/ ((module) => {
-
-module.exports = eval("require")("./multiply");
-
-
-/***/ }),
-
-/***/ 685:
-/***/ ((module) => {
-
-module.exports = eval("require")("./subtract");
-
-
-/***/ }),
-
 /***/ 357:
 /***/ ((module) => {
 
@@ -1701,9 +1715,7 @@ var __webpack_exports__ = {};
 // This entry need to be wrapped in an IIFE because it need to be isolated against other modules in the chunk.
 (() => {
 const core = __nccwpck_require__(186);
-const add = __nccwpck_require__(587)
-const subtract = __nccwpck_require__(685)
-const multiply = __nccwpck_require__(880)
+const { add, subtract, multiply } = __nccwpck_require__(80);
  
 async function run() {
   try {

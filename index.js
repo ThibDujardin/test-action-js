@@ -1,7 +1,5 @@
 const core = require('@actions/core');
-const add = require('./add')
-const subtract = require('./subtract')
-const multiply = require('./multiply')
+const { add, subtract, multiply } = require("./math");
  
 async function run() {
   try {
