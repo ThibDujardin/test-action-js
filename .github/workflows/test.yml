@@ -23,9 +23,9 @@ jobs:
     - uses: ./
       id : test
       with:
-        input-1: 1000
-        input-2: 500
+        input-1: 5
+        input-2: 9
 
     - name: Validate // Test addition
       run: |
-        [[ "${{ steps.test.outputs.addition }}" -eq 1500 ]]
+        [[ "${{ steps.test.outputs.addition }}" -eq 14 ]]
